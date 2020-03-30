@@ -1,0 +1,79 @@
+---
+
+# Instalando o Oracle Virtualbox
+
+- name: Removendo dependencias antigas do Virtualbox (openSUSE Leap)
+  when: ansible_distribution == "openSUSE Leap"
+  shell: "zypper -n rm virtualbox-guest-kmp-default virtualbox-guest-tools"
+  ignore_errors: yes 
+  args:
+    warn: false
+  become: true
+  tags:
+    - deps
+    - virtualbox
+
+- name: Instalando as dependencias do Oracle Virtualbox
+  zypper:
+    name: "{{ pacotes_virtualbox }}"
+    state: present
+    force: yes
+    update_cache: yes
+  become: true
+  tags:
+    - deps
+    - virtualbox
+
+- name: Adicionando repositório do Oracle VirtualBox (openSUSE Leap abaixo da versão 15)
+  when: ansible_distribution == "openSUSE Leap" and not ansible_distribution_major_version == "15"
+  get_url:
+    url: "http://download.virtualbox.org/virtualbox/rpm/opensuse/virtualbox.repo"
+    dest: /etc/zypp/repos.d/virtualbox.repo
+  become: true
+  tags:
+    - repo
+    - virtualbox
+
+- name: "Adicionando repositório do Oracle VirtualBox (openSUSE Tumbleweed ou Leap 15)"
+  when: ansible_distribution == "openSUSE Tumbleweed" or ansible_distribution_major_version == "15"
+  template:
+    src: "virtualbox_suse.repo.j2"
+    dest: "/etc/zypp/repos.d/virtualbox.repo"
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+  tags:
+    - repo
+    - virtualbox
+
+
+- name: "Instalando o Oracle Virtualbox {{ virtualbox_version }}"
+  zypper:
+    name: "VirtualBox-{{ virtualbox_version }}"
+    state: present
+    force: yes
+    update_cache: yes
+    disable_gpg_check: yes
+  become: true
+  notify:
+    - Adicionando usuario ao grupo 'vboxusers'
+  tags:
+    - virtualbox
+
+- name: Configurando os módulos do kernel Linux para o Oracle VirtualBox
+  command: "/usr/lib/virtualbox/vboxdrv.sh setup"
+  become: true
+  tags:
+    - virtualbox
+
+# Instalando o Vagrant
+
+- name: Instalando o Vagrant
+  zypper:
+    name: "https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_{{ ansible_architecture }}.rpm"
+    state: present
+    disable_gpg_check: yes
+  become: true
+  tags:
+    - vagrant

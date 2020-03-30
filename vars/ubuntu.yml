@@ -1,0 +1,10 @@
+---
+
+pacotes_virtualbox:
+  - build-essential
+  - apt-transport-https
+  - ca-certificates
+  - dkms
+  - curl
+  - software-properties-common
+

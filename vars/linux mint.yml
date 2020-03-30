@@ -1,0 +1,15 @@
+---
+
+pacotes_virtualbox:
+  - build-essential
+  - apt-transport-https
+  - dkms
+
+
+mint_debian_ubuntu_versions: {
+  "3" : "stretch",
+  "4" : "buster",
+  "17" : "trusty",
+  "18" : "xenial",
+  "19" : "bionic"
+}

@@ -1,0 +1,84 @@
+---
+
+# Instalação das dependencias do Oracle Virtualbox
+
+- name: "Instalando os pacotes de dependencias para o Virtualbox"
+  apt:
+    name: "{{ pacotes_virtualbox }}"
+    state: present
+    update_cache: yes
+  become: true
+  tags:
+    - deps
+
+# Instalação do Oracle Virtualbox
+
+- name: Importando a primeira chave do repositorio do Oracle Virtualbox
+  apt_key: 
+    url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+    state: present
+  become: true
+  tags:
+    - repo
+    - virtualbox
+
+
+- name: Importando a segunda chave do repositorio do Oracle Virtualbox
+  apt_key: 
+    url: https://www.virtualbox.org/download/oracle_vbox.asc
+    state: present
+  become: true
+  tags:
+    - repo
+    - virtualbox
+
+
+- name: Adicionando o Repositorio do Oracle Virtualbox para Debian ou Ubuntu
+  when: ansible_distribution == "Debian" or ansible_distribution == "Ubuntu"
+  apt_repository:
+    repo: "deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+    state: present
+    filename: virtualbox
+    update_cache: yes
+  become: true
+  tags:
+    - repo
+    - virtualbox
+
+
+- name: "Adicionando o Repositorio do Oracle Virtualbox para o Linux Mint"
+  when: ansible_distribution == "Linux Mint"
+  apt_repository:
+    repo: "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian {{ mint_debian_ubuntu_versions[ansible_distribution_major_version] }} contrib"
+    state: present
+    filename: virtualbox
+    update_cache: yes
+  become: true
+  tags:
+    - repo
+    - virtualbox
+
+
+# Instalação do Vagrant Virtualbox
+
+- name: Instalando o Oracle Virtualbox
+  apt:
+    name: "virtualbox-{{ virtualbox_version }}"
+    state: present
+    update_cache: yes
+  notify:
+    - Adicionando usuario ao grupo 'vboxusers'
+  become: true
+  tags:
+    - virtualbox
+
+# Instalação do Vagrant
+
+- name: Instalando o Vagrant
+  apt:
+    deb: "https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_{{ ansible_architecture }}.deb"
+    state: present
+    update_cache: yes
+  become: true
+  tags:
+    - vagrant

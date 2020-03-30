@@ -1,0 +1,10 @@
+---
+
+pacotes_virtualbox:
+  - gcc 
+  - make 
+  - perl 
+  - kernel-devel 
+  - dkms
+
+virtualbox_version_url: 15.0
