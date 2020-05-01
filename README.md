@@ -7,10 +7,10 @@ Distribuições Suportadas pela Role
 ------------
 
 - Fedora 28 ou superior
-- Linux Mint LMDE 3 ou superior
-- Linux Mint 19.2 ou superior
+- Linux Mint LMDE 3 (64 bits) ou superior
+- Linux Mint 19.2 (64 bits) ou superior
 - openSUSE Leap 15.0 ou superior
-- Ubuntu 19.04 ou superior
+- Ubuntu 19.04 (64 bits) ou superior
 
 
 Tags da Role 

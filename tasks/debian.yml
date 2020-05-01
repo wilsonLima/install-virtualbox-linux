@@ -36,7 +36,7 @@
 - name: Adicionando o Repositorio do Oracle Virtualbox para Debian ou Ubuntu
   when: ansible_distribution == "Debian" or ansible_distribution == "Ubuntu"
   apt_repository:
-    repo: "deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
+    repo: "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
     state: present
     filename: virtualbox
     update_cache: yes
