@@ -3,6 +3,6 @@
 - name: Adicionando usuario ao grupo 'vboxusers'
   user:
     name: "{{ ansible_user_id }}"
-    uid: "{{ ansible_user_uid }}"
-    group: vboxusers
+    groups: vboxusers
+    append: yes
   become: true
