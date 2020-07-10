@@ -1,4 +1,4 @@
 ---
 
-vagrant_version: 2.2.9
-virtualbox_version: 6.1
+vagrant_version: "2.2.9"
+virtualbox_version: "6.1"
