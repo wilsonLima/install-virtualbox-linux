@@ -41,7 +41,7 @@
     dest: "/etc/zypp/repos.d/virtualbox.repo"
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   become: true
   tags:
     - repo

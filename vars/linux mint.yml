@@ -11,5 +11,6 @@ mint_debian_ubuntu_versions: {
   "4" : "buster",
   "17" : "trusty",
   "18" : "xenial",
-  "19" : "bionic"
+  "19" : "bionic",
+  "20" : "focal"
 }
