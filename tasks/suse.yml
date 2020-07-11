@@ -17,8 +17,8 @@
   zypper:
     name: "{{ pacotes_virtualbox }}"
     state: present
-    force: yes
     update_cache: yes
+    disable_gpg_check: yes
   become: true
   tags:
     - deps
@@ -52,7 +52,6 @@
   zypper:
     name: "VirtualBox-{{ virtualbox_version }}"
     state: present
-    force: yes
     update_cache: yes
     disable_gpg_check: yes
   become: true
@@ -73,6 +72,7 @@
   zypper:
     name: "https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_{{ ansible_architecture }}.rpm"
     state: present
+    update_cache: yes
     disable_gpg_check: yes
   become: true
   tags:
