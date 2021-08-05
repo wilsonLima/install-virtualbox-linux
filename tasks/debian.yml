@@ -2,6 +2,16 @@
 
 # Instalação das dependencias do Oracle Virtualbox
 
+
+- name: "Atualizando apt cache"
+  apt: 
+    update_cache: yes 
+    cache_valid_time: 7200
+  become: true
+  tags:
+    - repo
+
+
 - name: "Instalando os pacotes de dependencias para o Virtualbox"
   apt:
     name: "{{ pacotes_virtualbox }}"
@@ -59,6 +69,15 @@
     - virtualbox
 
 
+- name: "Atualizando apt cache"
+  apt: 
+    update_cache: yes 
+    cache_valid_time: 7200
+  become: true
+  tags:
+    - repo
+
+
 # Instalação do Vagrant Virtualbox
 
 - name: Instalando o Oracle Virtualbox
@@ -71,6 +90,7 @@
   become: true
   tags:
     - virtualbox
+
 
 # Instalação do Vagrant
 
