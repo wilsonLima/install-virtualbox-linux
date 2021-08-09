@@ -49,6 +49,7 @@
   dnf:
     name: "https://releases.hashicorp.com/vagrant/{{ vagrant_version }}/vagrant_{{ vagrant_version }}_{{ ansible_architecture }}.rpm"
     state: present
+    disable_gpg_check: yes
   become: true
   tags:
     - vagrant
