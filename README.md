@@ -28,7 +28,7 @@ Tags da Role
 Variáveis da Role 
 --------------
 
-- vagrant_version: Versão do Vagrant, valor padrão: 2.2.18 .
+- vagrant_version: Versão do Vagrant, valor padrão: 2.2.19 .
 - virtualbox_version: versão do VirtualBox, valor padrão: 6.1 .
 
 
