@@ -9,6 +9,7 @@ pacotes_virtualbox:
 mint_debian_ubuntu_versions: {
   "3" : "stretch",
   "4" : "buster",
+  "5" : "bullseye",
   "17" : "trusty",
   "18" : "xenial",
   "19" : "bionic",
