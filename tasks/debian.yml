@@ -21,35 +21,41 @@
   tags:
     - deps
 
+
 # Instalação do Oracle Virtualbox
 
+
 - name: Importando a primeira chave do repositorio do Oracle Virtualbox
-  apt_key: 
-    url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
-    state: present
+  copy:
+    src: "oracle-virtualbox-2016.gpg"
+    dest: "/usr/share/keyrings/oracle-virtualbox-2016.gpg"
+    owner: root
+    group: root
+    mode: "0644"
   become: true
   tags:
     - repo
     - virtualbox
 
 
-- name: Importando a segunda chave do repositorio do Oracle Virtualbox
-  apt_key: 
-    url: https://www.virtualbox.org/download/oracle_vbox.asc
-    state: present
-  become: true
-  tags:
-    - repo
-    - virtualbox
+# - name: Importando a segunda chave do repositorio do Oracle Virtualbox
+#   apt_key: 
+#     url: https://www.virtualbox.org/download/oracle_vbox.asc
+#     state: present
+#   become: true
+#   tags:
+#     - repo
+#     - virtualbox
 
 
 - name: Adicionando o Repositorio do Oracle Virtualbox para Debian ou Ubuntu
   when: ansible_distribution == "Debian" or ansible_distribution == "Ubuntu"
-  apt_repository:
-    repo: "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib"
-    state: present
-    filename: virtualbox
-    update_cache: yes
+  template:
+    src: "virtualbox_debian.list.j2"
+    dest: "/etc/apt/sources.list.d/virtualbox.list"
+    owner: root
+    group: root
+    mode: "0644"
   become: true
   tags:
     - repo
@@ -58,11 +64,12 @@
 
 - name: "Adicionando o Repositorio do Oracle Virtualbox para o Linux Mint"
   when: ansible_distribution == "Linux Mint"
-  apt_repository:
-    repo: "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian {{ mint_debian_ubuntu_versions[ansible_distribution_major_version] }} contrib"
-    state: present
-    filename: virtualbox
-    update_cache: yes
+  template:
+    src: "virtualbox_mint.list.j2"
+    dest: "/etc/apt/sources.list.d/virtualbox.list"
+    owner: root
+    group: root
+    mode: "0644"
   become: true
   tags:
     - repo
@@ -76,6 +83,7 @@
   become: true
   tags:
     - repo
+    - virtualbox
 
 
 # Instalação do Vagrant Virtualbox

@@ -1,6 +1,7 @@
 ---
 
 pacotes_virtualbox:
+  - curl
   - build-essential
   - apt-transport-https
   - dkms

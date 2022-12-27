@@ -22,14 +22,12 @@ Tags da Role
 - deps: Instala os pacotes de dependências.
 
 - virtualbox: Realiza a instalação do VirtualBox.
-- vagrant: Realiza a instalação do Vagrant.
 
 
 Variáveis da Role 
 --------------
 
-- vagrant_version: Versão do Vagrant, valor padrão: 2.2.19 .
-- virtualbox_version: versão do VirtualBox, valor padrão: 6.1 .
+- virtualbox_version: versão do VirtualBox, valor padrão: 7.0 .
 
 
 Dependências da Role 
