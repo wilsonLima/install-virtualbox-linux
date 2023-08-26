@@ -7,4 +7,5 @@ pacotes_virtualbox:
   - dkms
   - curl
   - software-properties-common
+  - "linux-headers-{{ ansible_kernel }}"
 

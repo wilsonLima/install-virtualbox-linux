@@ -6,11 +6,10 @@ Role do Ansible com os passos para a instalação do VirtualBox em distribuiçõ
 Distribuições Suportadas pela Role
 ------------
 
-- Fedora 28 ou superior
-- Linux Mint LMDE 3 (64 bits) ou superior
-- Linux Mint 19.2 (64 bits) ou superior
-- openSUSE Leap 15.0 ou superior
-- Ubuntu 19.04 (64 bits) ou superior
+- Fedora 37 ou superior
+- Linux Mint 21.1 ou superior
+- openSUSE Leap 15.4 ou superior
+- Ubuntu 22.04 ou inferior
 
 
 Tags da Role 

@@ -25,7 +25,7 @@
     - virtualbox
 
 
-- name: "Instalando o Oracle VirtualBox"
+- name: "Instalando o Oracle VirtualBox {{ virtualbox_version }}"
   dnf:
     name: "VirtualBox-{{ virtualbox_version }}"
     state: present

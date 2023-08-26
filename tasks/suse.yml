@@ -5,7 +5,7 @@
 - name: Removendo dependencias antigas do Virtualbox (openSUSE Leap)
   when: ansible_distribution == "openSUSE Leap"
   shell: "zypper -n rm virtualbox-guest-kmp-default virtualbox-guest-tools"
-  ignore_errors: yes 
+  ignore_errors: True 
   args:
     warn: false
   become: true
@@ -59,6 +59,7 @@
     - Adicionando usuario ao grupo 'vboxusers'
   tags:
     - virtualbox
+
 
 - name: Configurando os módulos do kernel Linux para o Oracle VirtualBox
   command: "/usr/lib/virtualbox/vboxdrv.sh setup"

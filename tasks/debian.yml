@@ -38,14 +38,14 @@
     - virtualbox
 
 
-# - name: Importando a segunda chave do repositorio do Oracle Virtualbox
-#   apt_key: 
-#     url: https://www.virtualbox.org/download/oracle_vbox.asc
-#     state: present
-#   become: true
-#   tags:
-#     - repo
-#     - virtualbox
+- name: Importando a segunda chave do repositorio do Oracle Virtualbox
+  apt_key: 
+    url: https://www.virtualbox.org/download/oracle_vbox.asc
+    state: present
+  become: true
+  tags:
+    - repo
+    - virtualbox
 
 
 - name: Adicionando o Repositorio do Oracle Virtualbox para Debian ou Ubuntu
@@ -88,7 +88,7 @@
 
 # Instalação do Vagrant Virtualbox
 
-- name: Instalando o Oracle Virtualbox
+- name: "Instalando o Oracle Virtualbox {{ virtualbox_version }}"
   apt:
     name: "virtualbox-{{ virtualbox_version }}"
     state: present
